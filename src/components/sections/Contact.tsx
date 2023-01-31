@@ -27,7 +27,7 @@ const Contact = () => {
                 <div className="flex flex-col mt-20 space-y-10">
                     <h4 className="text-3xl md:text-4xl font-semibold text-center">
                         I have got just what you need.{" "}
-                        <span className="underline decoration-[#f7ab0a]/10">Let's Talk.</span>
+                        <span className="underline decoration-[#f7ab0a]/10">Let Us Talk.</span>
                     </h4>
 
                     <div className='space-y-5 md:space-y-10'>
