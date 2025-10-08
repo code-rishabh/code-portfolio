@@ -21,7 +21,7 @@ const About = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Rishabh Sharma</h2>
-              <p className="text-[var(--muted)]">Frontend Developer</p>
+              <p className="text-[var(--muted)]">Software Engineer</p>
               <p className="text-sm text-[var(--muted)]">Pune, Maharashtra, India</p>
             </div>
           </div>

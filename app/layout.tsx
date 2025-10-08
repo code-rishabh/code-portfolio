@@ -3,8 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "./providers/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Rishabh Sharma - Frontend Developer Portfolio",
-  description: "Experienced Frontend Developer specializing in React, Next.js, and TypeScript. Building modern, responsive web applications with 2+ years of experience.",
+  title: "Rishabh Sharma - Software Engineer Portfolio",
+  description: "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript. Building modern, scalable web applications and enterprise solutions with 3+ years of experience.",
   keywords: [
     "portfolio", 
     "frontend developer", 
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   creator: "Rishabh Sharma",
   publisher: "Rishabh Sharma",
   openGraph: {
-    title: "Rishabh Sharma - Frontend Developer Portfolio",
-    description: "Experienced Frontend Developer specializing in React, Next.js, and TypeScript. Building modern, responsive web applications.",
+    title: "Rishabh Sharma - Software Engineer Portfolio",
+    description: "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript. Building modern, scalable web applications and enterprise solutions.",
     type: "website",
     url: "https://rishabh-portfolio.vercel.app",
     siteName: "Rishabh Sharma Portfolio",
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Rishabh Sharma - Frontend Developer",
+        alt: "Rishabh Sharma - Software Engineer",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rishabh Sharma - Frontend Developer Portfolio",
-    description: "Experienced Frontend Developer specializing in React, Next.js, and TypeScript.",
+    title: "Rishabh Sharma - Software Engineer Portfolio",
+    description: "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript.",
     creator: "@iamRissu",
     images: ["/og-image.jpg"],
   },
@@ -65,8 +65,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Rishabh Sharma",
-    "jobTitle": "Frontend Developer",
-    "description": "Experienced Frontend Developer specializing in React, Next.js, and TypeScript",
+    "jobTitle": "Software Engineer",
+    "description": "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript",
     "url": "https://rishabh-portfolio.vercel.app",
     "image": "https://rishabh-portfolio.vercel.app/og-image.jpg",
     "sameAs": [
@@ -94,8 +94,8 @@ export default function RootLayout({
     ],
     "hasOccupation": {
       "@type": "Occupation",
-      "name": "Frontend Developer",
-      "description": "Building modern, responsive web applications using React, Next.js, and TypeScript"
+      "name": "Software Engineer",
+      "description": "Building modern, scalable web applications and enterprise solutions using React, Next.js, Node.js, and TypeScript"
     }
   };
 
