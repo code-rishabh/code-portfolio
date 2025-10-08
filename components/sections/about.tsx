@@ -74,7 +74,6 @@ const About = () => {
             <div className="timeline-icon">
               <GraduationCap size={20} />
             </div>
-            <div className="timeline-dot"></div>
             <div className="timeline-content">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-xl">B.Tech in Electronics & Telecommunication</h4>
@@ -97,7 +96,6 @@ const About = () => {
             <div className="timeline-icon">
               <Code size={20} />
             </div>
-            <div className="timeline-dot"></div>
             <div className="timeline-content">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-xl">Full-Stack Developer Intern</h4>
@@ -115,7 +113,6 @@ const About = () => {
             <div className="timeline-icon">
               <Briefcase size={20} />
             </div>
-            <div className="timeline-dot"></div>
             <div className="timeline-content">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-xl">Technical Associate</h4>
@@ -133,7 +130,6 @@ const About = () => {
             <div className="timeline-icon">
               <Award size={20} />
             </div>
-            <div className="timeline-dot"></div>
             <div className="timeline-content">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-xl">Software Engineer</h4>

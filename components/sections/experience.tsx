@@ -122,7 +122,6 @@ const Experience = () => {
               <div className="timeline-icon">
                 {getIcon(exp.title)}
               </div>
-              <div className="timeline-dot"></div>
               <div className="timeline-content">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
