@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0d1117;
+  --foreground: #f0f6fc;
+  --border: #30363d;
+  --card: #161b22;
+  --muted: #7d8590;
+  --accent: #238636;
+  --accent-hover: #2ea043;
+  --accent-rgb: 35, 134, 54;
+  --card-rgb: 22, 27, 34;
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #24292f;
+  --border: #d0d7de;
+  --card: #f6f8fa;
+  --muted: #656d76;
+  --accent: #0969da;
+  --accent-hover: #0860ca;
+  --accent-rgb: 9, 105, 218;
+  --card-rgb: 246, 248, 250;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* GitHub-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* GitHub-style focus */
+.focus-visible:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Minimalistic borders */
+.border-minimal {
+  border: 1px solid var(--border);
+}
+
+.border-minimal-top {
+  border-top: 1px solid var(--border);
+}
+
+.border-minimal-bottom {
+  border-bottom: 1px solid var(--border);
+}
+
+/* GitHub-style cards */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.card-hover:hover {
+  background-color: #21262d;
+  border-color: #484f58;
+}
+
+/* Simplified Timeline styles */
+.timeline-line {
+  position: relative;
+  padding-left: 3rem;
+  margin: 2rem 0;
+}
+
+/* Main Timeline Line */
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 1rem;
+  width: 1rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 0.5rem;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--background);
+}
+
+.timeline-content {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(4px);
+  border-color: var(--accent);
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.2rem;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  z-index: 2;
+}
+
+/* Progress indicator */
+.timeline-progress {
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  border-radius: 2px;
+  transition: height 0.8s ease;
+  height: 0;
+}
+
+.timeline-progress.animate {
+  height: 100%;
+}
+
+/* Tree Growth Animation */
+@keyframes treeGrow {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.timeline-line.animate::before {
+  animation: treeGrow 2s ease-out forwards;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .timeline-line {
+    padding-left: 2.5rem;
+  }
+  
+  .timeline-line::before {
+    left: 1.2rem;
+    width: 3px;
+  }
+  
+  .timeline-dot {
+    left: -2rem;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .timeline-content {
+    margin-left: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .timeline-icon {
+    left: -2.8rem;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .timeline-item::before {
+    left: -1.2rem;
+    width: 1rem;
+  }
+}
+
