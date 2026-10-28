@@ -1,123 +1,64 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./providers/theme-provider";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { TransitionProvider } from "@/components/Transition";
+import { Preloader } from "@/components/Preloader";
+import { Nav } from "@/components/Nav";
+import { Cursor } from "@/components/Cursor";
+import { RevealManager } from "@/components/RevealManager";
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+const sans = Inter_Tight({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+
+const description =
+  "Product-minded builder. 3+ years taking B2B SaaS, EdTech, AI and XR products from discovery to launch: a VR campus tour platform used by 170+ US school districts, an AI-powered CRM and more.";
 
 export const metadata: Metadata = {
-  title: "Rishabh Sharma - Software Engineer Portfolio",
-  description: "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript. Building modern, scalable web applications and enterprise solutions with 3+ years of experience.",
-  keywords: [
-    "portfolio", 
-    "frontend developer", 
-    "react developer", 
-    "nextjs developer", 
-    "typescript developer",
-    "web developer",
-    "javascript developer",
-    "pune developer",
-    "freelance developer",
-    "ui developer"
-  ],
-  authors: [{ name: "Rishabh Sharma", url: "https://github.com/code-rishabh" }],
-  creator: "Rishabh Sharma",
-  publisher: "Rishabh Sharma",
+  metadataBase: new URL("https://rishabh-sharma-three.vercel.app"),
+  title: {
+    default: "Rishabh Sharma: Product-minded builder",
+    template: "%s · Rishabh Sharma",
+  },
+  description,
   openGraph: {
-    title: "Rishabh Sharma - Software Engineer Portfolio",
-    description: "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript. Building modern, scalable web applications and enterprise solutions.",
+    title: "Rishabh Sharma: Product-minded builder",
+    description,
+    images: ["/images/portrait.png"],
     type: "website",
-    url: "https://rishabh-portfolio.vercel.app",
-    siteName: "Rishabh Sharma Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Rishabh Sharma - Software Engineer",
-      },
-    ],
-    locale: "en_US",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rishabh Sharma - Software Engineer Portfolio",
-    description: "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript.",
-    creator: "@iamRissu",
-    images: ["/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  twitter: { card: "summary_large_image" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Rishabh Sharma",
-    "jobTitle": "Software Engineer",
-    "description": "Experienced Software Engineer specializing in React, Next.js, Node.js, and TypeScript",
-    "url": "https://rishabh-portfolio.vercel.app",
-    "image": "https://rishabh-portfolio.vercel.app/og-image.jpg",
-    "sameAs": [
-      "https://github.com/code-rishabh",
-      "https://linkedin.com/in/rishabh-sharma-9864741b8",
-      "https://twitter.com/iamRissu"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Pune",
-      "addressRegion": "Maharashtra",
-      "addressCountry": "India"
-    },
-    "knowsAbout": [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "Tailwind CSS",
-      "Node.js",
-      "MongoDB",
-      "Git"
-    ],
-    "hasOccupation": {
-      "@type": "Occupation",
-      "name": "Software Engineer",
-      "description": "Building modern, scalable web applications and enterprise solutions using React, Next.js, Node.js, and TypeScript"
-    }
-  };
+export const viewport: Viewport = {
+  themeColor: "#f3ece0",
+};
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
-      <body className="bg-[var(--background)] text-[var(--foreground)]">
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+      <body>
+        <SmoothScroll>
+          <TransitionProvider>
+            <Preloader />
+            <Nav />
+            <main>{children}</main>
+            <Cursor />
+            <RevealManager />
+            <div className="grain" aria-hidden />
+          </TransitionProvider>
+        </SmoothScroll>
       </body>
     </html>
   );
 }
-

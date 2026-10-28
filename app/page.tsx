@@ -1,19 +1,27 @@
-import Sidebar from "@/components/layout/sidebar";
-import MainContent from "@/components/layout/main-content";
+import { Hero } from "@/components/Hero";
+import { Statement } from "@/components/Statement";
+import { Numbers } from "@/components/Numbers";
+import { Work } from "@/components/Work";
+import { Journey } from "@/components/Journey";
+import { Experience } from "@/components/Experience";
+import { Marquee } from "@/components/Marquee";
+import { Notes } from "@/components/Notes";
+import { About } from "@/components/About";
+import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="flex h-screen bg-[var(--background)]">
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block">
-        <Sidebar />
-      </div>
-      
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        <MainContent />
-      </div>
-    </div>
+    <>
+      <Hero />
+      <Statement />
+      <Numbers />
+      <Work />
+      <Journey />
+      <Notes />
+      <Experience />
+      <Marquee />
+      <About />
+      <Contact />
+    </>
   );
 }
-
