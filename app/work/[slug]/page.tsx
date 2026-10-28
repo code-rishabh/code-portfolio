@@ -61,7 +61,7 @@ export default function CaseStudy({ params }: Params) {
       </header>
 
       <div className="cs-cover" data-reveal>
-        <Placeholder media={p.cover} hue={p.hue} parallax={6} />
+        <Placeholder media={p.cover} hue={p.hue} parallax={6} sizes="94vw" />
       </div>
 
       <section className="cs-intro">
@@ -104,9 +104,15 @@ export default function CaseStudy({ params }: Params) {
           </div>
           </div>
           {s.media && (
-            <div className="cs-section__media" data-reveal>
-              <div style={{ overflow: "hidden", borderRadius: "var(--radius)" }}>
-                <Placeholder media={s.media} hue={p.hue} parallax={4} style={{ borderRadius: 0 }} />
+            <div className={`cs-section__media ${s.media.layout === "portrait" ? "is-portrait" : ""}`} data-reveal>
+              <div className="cs-section__frame">
+                <Placeholder
+                  media={s.media}
+                  hue={p.hue}
+                  parallax={4}
+                  style={{ borderRadius: 0 }}
+                  sizes={s.media.layout === "portrait" ? "(max-width: 900px) 92vw, 40vw" : "(max-width: 900px) 92vw, 94vw"}
+                />
               </div>
             </div>
           )}

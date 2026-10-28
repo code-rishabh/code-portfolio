@@ -103,7 +103,15 @@ export const journey: Stage[] = [
   },
 ];
 
-export type Media = { label: string; aspect?: string; src?: string; caption?: string };
+export type Media = {
+  label: string;
+  aspect?: string;
+  src?: string;
+  /** CSS object-position for cropping, e.g. "50% 30%". */
+  position?: string;
+  /** "portrait" sits beside the text column instead of spanning full width. */
+  layout?: "full" | "portrait";
+};
 export type Section = { heading: string; body: string[]; bullets?: string[]; media?: Media };
 export type Project = {
   slug: string;
@@ -193,7 +201,13 @@ export const projects: Project[] = [
         body: [
           "We launched in three months with a team of two. After launch I managed a fleet of ~50 headsets remotely through ManageXR, pushing updates and supporting the CEO. The platform was featured on The Baller Alert Show, a US podcast.",
         ],
-        media: { label: "Footage captured in the headset", aspect: "16/9" },
+        media: {
+          label: "Testing a build in the headset",
+          src: "/photos/headset-controller.jpg",
+          aspect: "3/4",
+          layout: "portrait",
+          position: "50% 30%",
+        },
       },
     ],
   },
@@ -312,6 +326,13 @@ export const projects: Project[] = [
         body: [
           "I handle client support for Meta, Pico and Apple Vision Pro headsets and MDMs, present weekly brand reviews to sales, and turn what I hear in support into roadmap items.",
         ],
+        media: {
+          label: "Hands-on with the hardware",
+          src: "/photos/headset-office.jpg",
+          aspect: "3/4",
+          layout: "portrait",
+          position: "50% 25%",
+        },
       },
     ],
   },
@@ -336,8 +357,13 @@ export const projects: Project[] = [
       { value: "6–7", label: "interns co-led" },
       { value: "2", label: "interns hired full-time" },
     ],
-    cover: { label: "Abstract visual: VR training system", aspect: "16/9" },
-    note: "Parts of this work are under NDA, so the visuals here are illustrative.",
+    cover: {
+      label: "On-prem server setup with PICO headsets",
+      src: "/photos/servers-desk.jpg",
+      aspect: "16/9",
+      position: "50% 55%",
+    },
+    note: "Parts of this work are under NDA, so product screenshots aren't shown.",
     sections: [
       {
         heading: "Defence VR training · Tata Advanced Systems",
@@ -345,7 +371,7 @@ export const projects: Project[] = [
           "I built an admin web dashboard for a Unity-based VR training system running on Pico 4 Ultra Enterprise headsets. Admins monitor users, manage roles, and push images, videos, PDFs, audio and 3D assets to headsets over the intranet.",
           "I also set up two on-premise servers, for development and production, on SUSE Linux, covering networking, deployment and CI/CD.",
         ],
-        media: { label: "Dashboard: user monitoring & asset push", aspect: "16/9" },
+        media: { label: "Setting up the dev and production servers", src: "/photos/servers-rishabh.jpg", aspect: "16/9" },
       },
       {
         heading: "AR/VR e-learning · Tata Technologies",
@@ -359,6 +385,7 @@ export const projects: Project[] = [
         body: [
           "I mentored the interns through code reviews and daily standups. Two of them were hired full-time.",
         ],
+        media: { label: "A build day with the team", src: "/photos/team-table.jpg", aspect: "16/10" },
       },
     ],
   },
@@ -450,6 +477,14 @@ export const experience = [
 export const education = [
   { title: "AI Product Manager", org: "AirTribe", meta: "In progress" },
   { title: "B.Tech, Electronics & Telecommunication", org: "Bharati Vidyapeeth University", meta: "GPA 9.2 · 2019 — 23" },
+];
+
+export const journeyPhoto = { src: "/photos/headset-bokeh.jpg", label: "Testing what we build" };
+
+export const offTheClock = [
+  { src: "/photos/life-hills.jpg", caption: "Up in the hills", position: "62% 60%" },
+  { src: "/photos/life-beach.jpg", caption: "Long walks, no laptop", position: "50% 70%" },
+  { src: "/photos/life-boat.jpg", caption: "Thumbs up before the fast boat", position: "50% 55%" },
 ];
 
 export const toolbox = {

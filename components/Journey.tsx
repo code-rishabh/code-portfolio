@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { journey } from "@/lib/data";
+import Image from "next/image";
+import { journey, journeyPhoto } from "@/lib/data";
 
 const GLOWS = ["#f2c58a", "#efb48f", "#e8c9a0", "#d9c08b", "#e6a77c", "#c9d0b4"];
 
@@ -106,6 +107,10 @@ export function Journey() {
             </article>
           ))}
           <div className="journey__end">
+            <figure className="journey__photo">
+              <Image src={journeyPhoto.src} alt={journeyPhoto.label} fill sizes="(max-width: 900px) 92vw, 30vw" style={{ objectFit: "cover", objectPosition: "50% 25%" }} />
+              <figcaption className="ph__caption">{journeyPhoto.label}</figcaption>
+            </figure>
             <span className="label">The loop</span>
             <p>
               Most teams split these across five people. I&apos;ve owned <em>all six,</em> often in the same week.

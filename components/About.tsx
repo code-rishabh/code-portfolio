@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { profile } from "@/lib/data";
+import { offTheClock, profile } from "@/lib/data";
 import { Split } from "./Split";
 import { Arrow } from "./Notes";
 
@@ -61,6 +61,25 @@ export function About() {
               </a>
             ))}
           </div>
+        </div>
+      </div>
+
+      <div className="offclock">
+        <div className="offclock__head">
+          <span className="label">Off the clock</span>
+          <p className="offclock__line" data-reveal>
+            When the headset comes off, I&apos;m usually <em>outdoors.</em>
+          </p>
+        </div>
+        <div className="offclock__row">
+          {offTheClock.map((p, i) => (
+            <figure className="polaroid" key={p.src} style={{ ["--tilt" as string]: `${[-4, 2.5, -1.5][i]}deg` }} data-reveal>
+              <div className="polaroid__img">
+                <Image src={p.src} alt={p.caption} fill sizes="(max-width: 900px) 80vw, 28vw" style={{ objectFit: "cover", objectPosition: p.position }} />
+              </div>
+              <figcaption>{p.caption}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>

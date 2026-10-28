@@ -68,7 +68,7 @@ export function Work() {
               </span>
               <span className="work-row__year">{p.year}</span>
               <span className="work-row__mobile-media">
-                <Placeholder media={p.cover} hue={p.hue} />
+                <Placeholder media={p.cover} hue={p.hue} sizes="92vw" />
               </span>
             </TLink>
           </li>
@@ -79,7 +79,7 @@ export function Work() {
         <div className="work-preview__slides">
           {projects.map((p, i) => (
             <div className={`work-preview__slide ${i === active ? "is-on" : ""}`} key={p.slug} style={{ zIndex: i === active ? 2 : 1 }}>
-              <Placeholder media={{ ...p.cover, aspect: undefined }} hue={p.hue} />
+              <Placeholder media={{ ...p.cover, aspect: undefined }} hue={p.hue} sizes="440px" />
             </div>
           ))}
         </div>
