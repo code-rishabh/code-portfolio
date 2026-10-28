@@ -14,7 +14,14 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: Params): Metadata {
   const p = projects.find((x) => x.slug === params.slug);
-  return p ? { title: p.title, description: p.summary } : {};
+  if (!p) return {};
+  const title = `${p.title}: ${p.kicker}`;
+  return {
+    title: p.title,
+    description: p.summary,
+    openGraph: { title, description: p.summary, url: `/work/${p.slug}`, type: "article" },
+    twitter: { title, description: p.summary },
+  };
 }
 
 export default function CaseStudy({ params }: Params) {
