@@ -1059,16 +1059,25 @@ canvas {
   color: var(--amber);
 }
 .journey__end {
-  width: clamp(280px, 30vw, 460px);
+  width: clamp(300px, 34vw, 520px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 18px;
+  gap: 16px;
   padding-right: var(--gutter);
+}
+.journey__photo {
+  position: relative;
+  width: 100%;
+  height: min(24vh, 230px);
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper-3);
 }
 .journey__end p {
   font-family: var(--f-serif);
-  font-size: clamp(30px, 3.2vw, 52px);
+  font-size: clamp(26px, 2.5vw, 42px);
   line-height: 1.02;
   letter-spacing: -0.03em;
 }
@@ -1206,6 +1215,26 @@ canvas {
   inset: 18%;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
+}
+
+.ph--photo {
+  background: var(--paper-3);
+}
+.ph__caption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(29, 24, 19, 0.38);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ==========================================================================
@@ -1667,6 +1696,79 @@ canvas {
   }
 }
 
+/* Off the clock: polaroid strip */
+.offclock {
+  margin-top: clamp(90px, 11vw, 160px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+  align-items: center;
+}
+.offclock__head {
+  grid-column: 1 / span 4;
+}
+.offclock__line {
+  margin-top: 18px;
+  font-family: var(--f-serif);
+  font-size: clamp(30px, 3.2vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.offclock__line em {
+  color: var(--terracotta);
+}
+.offclock__row {
+  grid-column: 5 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2vw, 28px);
+}
+.polaroid {
+  background: #fbf7f0;
+  padding: 12px 12px 0;
+  border-radius: 6px;
+  box-shadow: 0 30px 50px -30px rgba(80, 45, 15, 0.45), 0 2px 6px rgba(29, 24, 19, 0.06);
+  rotate: var(--tilt, 0deg);
+  transition: rotate 0.6s var(--ease-out), translate 0.6s var(--ease-out);
+}
+.polaroid:hover {
+  rotate: 0deg;
+  translate: 0 -10px;
+}
+.polaroid__img {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--paper-3);
+}
+.polaroid figcaption {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 19px;
+  text-align: center;
+  padding: 12px 4px 16px;
+  color: var(--ink-2);
+}
+@media (max-width: 900px) {
+  .offclock {
+    grid-template-columns: 1fr;
+  }
+  .offclock__head,
+  .offclock__row {
+    grid-column: 1 / -1;
+  }
+  .offclock__row {
+    grid-template-columns: repeat(3, 72%);
+    overflow-x: auto;
+    padding: 20px 4px 30px;
+    scroll-snap-type: x mandatory;
+  }
+  .polaroid {
+    scroll-snap-align: center;
+  }
+}
+
 /* ==========================================================================
    Buttons
    ========================================================================== */
@@ -2022,6 +2124,23 @@ canvas {
 }
 .cs-section__media {
   margin-top: clamp(36px, 5vw, 72px);
+}
+.cs-section__frame {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.cs-section__media.is-portrait {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+}
+.cs-section__media.is-portrait .cs-section__frame {
+  grid-column: 6 / span 4;
+}
+@media (max-width: 900px) {
+  .cs-section__media.is-portrait .cs-section__frame {
+    grid-column: 1 / -1;
+  }
 }
 .cs-stack {
   padding: clamp(80px, 10vw, 150px) var(--gutter) 0;

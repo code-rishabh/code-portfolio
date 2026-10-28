@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { journey } from "@/lib/data";
+import Image from "next/image";
+import { journey, journeyPhoto } from "@/lib/data";
 
 const GLOWS = ["#f2c58a", "#efb48f", "#e8c9a0", "#d9c08b", "#e6a77c", "#c9d0b4"];
 
@@ -62,57 +63,65 @@ export function Journey() {
     return () => mm.revert();
   }, []);
 
+  // GSAP wraps the pinned section in a pin-spacer. Keep that inside a
+  // React-owned wrapper so unmounting never asks React to remove a moved node.
   return (
-    <section className="journey" id="process" ref={root}>
-      <div className="journey__pin">
-        <div className="journey__head">
-          <div>
-            <span className="label">How I work</span>
-            <h2 style={{ marginTop: 16 }}>
-              From idea to <em>deployment,</em> and back again.
-            </h2>
+    <div id="process">
+      <section className="journey" ref={root}>
+        <div className="journey__pin">
+          <div className="journey__head">
+            <div>
+              <span className="label">How I work</span>
+              <h2 style={{ marginTop: 16 }}>
+                From idea to <em>deployment,</em> and back again.
+              </h2>
+            </div>
+            <div className="journey__steps" aria-hidden>
+              {journey.map((s, i) => (
+                <span key={s.verb} className={i <= active ? "is-on" : ""}>
+                  {s.no} {s.verb}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="journey__steps" aria-hidden>
-            {journey.map((s, i) => (
-              <span key={s.verb} className={i <= active ? "is-on" : ""}>
-                {s.no} {s.verb}
-              </span>
-            ))}
+          <div className="journey__progress" aria-hidden>
+            <i ref={bar} />
           </div>
-        </div>
-        <div className="journey__progress" aria-hidden>
-          <i ref={bar} />
-        </div>
 
-        <div className="journey__track" ref={track}>
-          {journey.map((s, i) => (
-            <article className="stage" key={s.verb} style={{ ["--stage-glow" as string]: GLOWS[i] }}>
-              <div>
-                <div className="stage__top">
-                  <span className="stage__no">{s.no} / 06</span>
-                  <span className="mono" style={{ color: "var(--ink-soft)" }}>
-                    Stage
-                  </span>
+          <div className="journey__track" ref={track}>
+            {journey.map((s, i) => (
+              <article className="stage" key={s.verb} style={{ ["--stage-glow" as string]: GLOWS[i] }}>
+                <div>
+                  <div className="stage__top">
+                    <span className="stage__no">{s.no} / 06</span>
+                    <span className="mono" style={{ color: "var(--ink-soft)" }}>
+                      Stage
+                    </span>
+                  </div>
+                  <h3 className="stage__verb">{s.verb}</h3>
+                  <p className="stage__line">{s.line}</p>
                 </div>
-                <h3 className="stage__verb">{s.verb}</h3>
-                <p className="stage__line">{s.line}</p>
-              </div>
-              <div />
-              <ul className="stage__proof">
-                {s.proof.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-          <div className="journey__end">
-            <span className="label">The loop</span>
-            <p>
-              Most teams split these across five people. I&apos;ve owned <em>all six,</em> often in the same week.
-            </p>
+                <div />
+                <ul className="stage__proof">
+                  {s.proof.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+            <div className="journey__end">
+              <figure className="journey__photo">
+                <Image src={journeyPhoto.src} alt={journeyPhoto.label} fill sizes="(max-width: 900px) 92vw, 30vw" style={{ objectFit: "cover", objectPosition: "50% 25%" }} />
+                <figcaption className="ph__caption">{journeyPhoto.label}</figcaption>
+              </figure>
+              <span className="label">The loop</span>
+              <p>
+                Most teams split these across five people. I&apos;ve owned <em>all six,</em> often in the same week.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
