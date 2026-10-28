@@ -21,8 +21,14 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 const description =
   "Product-minded builder. 3+ years taking B2B SaaS, EdTech, AI and XR products from discovery to launch: a VR campus tour platform used by 170+ US school districts, an AI-powered CRM and more.";
 
+// Vercel provides the production domain at build time, so link previews always
+// point at the live site even if the domain changes.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rishabh-sharma-three.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Rishabh Sharma: Product-minded builder",
     template: "%s · Rishabh Sharma",
@@ -31,7 +37,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rishabh Sharma: Product-minded builder",
     description,
-    images: ["/images/portrait.png"],
+    url: "/",
+    siteName: "Rishabh Sharma",
     type: "website",
   },
   twitter: { card: "summary_large_image" },
